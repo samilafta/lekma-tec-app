@@ -1,0 +1,37 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Add Lab Results</ion-title>
+     <ion-buttons end>
+      <button color="light" ion-button icon-only (click)="closeModal()">
+        <ion-icon name="close-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <section class="profile" margin-bottom>
+    
+    <p>Name: <strong>{{ user_name }}</strong></p>
+    <p>Laboratory Test: <strong>{{ lab_type }}</strong></p>
+    <p>Booked Date: <strong>{{ book_date }}</strong></p>
+    <p>Booked Session: <strong>{{ book_session }}</strong></p>
+   
+  </section>
+
+  <hr>
+  <p color="light">Lab Results</p>
+  <ion-textarea class="textarea" cols="30" rows="10" [(ngModel)]="lab_results" name="lab_results"></ion-textarea>
+
+    <div padding text-center>
+      <button ion-button round color="light" icon-right (click)="submitResults(user_id, user_name, lab_type, book_date, book_session)">
+        Submit Results
+      </button>
+    </div>
+
+</ion-content>

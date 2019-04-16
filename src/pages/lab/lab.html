@@ -1,0 +1,40 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Accepted Requests</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="page_bg" padding>
+
+  <ion-row *ngFor="let not of (notifications | async)?.slice().reverse()">
+    <ion-col col-12>
+      <ion-card padding>
+          <p text-center> {{ not.created_at | date: 'dd/MM/yyyy hh:mm:ss' }}</p>
+          <h3>Name: <strong>{{ not.user_name }}</strong></h3>
+          <h3>Laboratory Test: <strong>{{ not.lab_type }}</strong></h3>
+          <h4>Booked Date: <strong>{{ not.book_date }}</strong></h4>
+          <h4>Booked Session: <ion-badge color="primary"><strong>{{ not.book_session }}</strong></ion-badge></h4>
+          <p *ngIf="not.status == 'pending'">Status: <ion-badge color="danger" item-end> {{ not.status }} </ion-badge></p>
+          <p *ngIf="not.status == 'accepted'">Status: <ion-badge color="secondary" item-end> {{ not.status }} </ion-badge></p>
+          <p *ngIf="not.status == 'cancelled'">Status: <ion-badge color="dark" item-end> {{ not.status }} </ion-badge></p>          <hr>
+          <ion-row>
+           <ion-col col-6>
+              <button ion-button round color="success" (click)="addLabResults(not.user_id, not.user_name, not.book_date, not.book_session, not.lab_type)">
+                Add Results
+              </button>
+            </ion-col>
+            <ion-col col-6>
+              <button ion-button round color="secondary" (click)="callNumber(not.phone)">
+                Call
+              </button>
+            </ion-col>
+          </ion-row>
+      </ion-card>
+    </ion-col>
+</ion-row>
+
+</ion-content>
